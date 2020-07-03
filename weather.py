@@ -118,7 +118,7 @@ class NWSForecastDefault:
 class NWSForecastBaseline(NWSForecastDefault):
     """NWS' baseline forecast."""
 
-    def render_text(self, days=3):
+    def render_text(self, days=4):
         """Returns a string explaining the baseline forecast."""
         result = ""
 
@@ -139,15 +139,13 @@ class NWSForecastBaseline(NWSForecastDefault):
                 'Tonight',
             ]
 
-            header = ''
-
             if name in acceptable_modifiers:
                 header = name
             else:
                 modifier = ''
                 if name.endswith(' Night'):
                     modifier = ' Night'
-                header = start_time.strftime(f'%A{modifier}, %B %d')
+                header = start_time.strftime(f'%A{modifier} (%B %d)')
 
             result += header + "\n"
             result += ('-' * len(header)) + "\n"
