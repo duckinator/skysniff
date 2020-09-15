@@ -163,21 +163,42 @@ class NWSForecastHourly(NWSForecastDefault):
         """Return a string explaining the hourly forecast."""
         properties = self.properties
         periods = properties['periods']
-        for i in range(0, 3):
+
+        result = ""
+        for i in range(0, 12):
             period = periods[i]
-            pass
+
+            start_time = self.parse_time(period['startTime'])
+            temp = period['temperature']
+            temp_unit = period['temperatureUnit']
+            wind_speed = period['windSpeed']
+            short_forecast = period['shortForecast']
+
+            result += f"{start_time.strftime('%I%p')} {temp}°{temp_unit}, {short_forecast}, winds {wind_speed}\n"
+        return result
 
 
 def main(argv):
     """Entrypoint for the script."""
-    if len(argv) > 1:
-        address = argv[1]
+    if len(argv) < 2 or len(argv) > 3:
+        print("Usage: ./weather.py daily [ADDRESS]", file=sys.stderr)
+        print("       ./weather.py hourly [ADDRESS]", file=sys.stderr)
+        sys.exit(1)
+
+    command = sys.argv[1]
+    if len(sys.argv) == 3:
+        address = sys.argv[2]
     else:
         address = input("Address: ")
 
     nws = NWSApi()
-    print(nws.forecast(address).render_text())
-    # print(nws.hourly(address).render_debug())
+    if command == 'daily':
+        print(nws.forecast(address).render_text())
+    elif command == 'hourly':
+        print(nws.hourly(address).render_text())
+    else:
+        print(f"Unknown command: {command}", file=sys.stderr)
+        sys.exit(1)
 
 
 if __name__ == "__main__":
