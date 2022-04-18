@@ -138,6 +138,7 @@ class NWSForecastBaseline(NWSForecastDefault):
             # end_time = self.parse_time(period['endTime'])
 
             acceptable_modifiers = [
+                'Overnight',
                 'This Afternoon',
                 'Tonight',
             ]
