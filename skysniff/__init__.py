@@ -7,7 +7,7 @@ from datetime import datetime
 import json
 import sys
 
-__author__ = 'Ellen Dash'
+__author__ = 'Ellen Marie Dash'
 __version__ = '0.0.1'
 
 

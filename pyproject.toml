@@ -1,18 +1,34 @@
 [build-system]
-# Specify the required build system.
-# Setuptools 40.9.0+ requirement is necessary to get rid of setup.py; see
-#  https://github.com/pypa/setuptools/pull/1675
-requires = ["setuptools >= 40.9.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "skysniff"
+dynamic = ["version"]
+authors = [
+    {name = "Ellen Marie Dash", email = "me@duckie.co"}
+]
+description = "Get weather information for a specified address"
+readme = "README.md"
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+requires-python = ">= 3.11"
+
+[project.urls]
+repository = "https://github.com/duckinator/skysniff"
+
+[project.scripts]
+skysniff = "skysniff.cli:main"
+
+[tool.hatch.version]
+path = "skysniff/__init__.py"
 
 [tool.bork.zipapp]
 enabled = true
 main = "skysniff.cli:main"
-
-[tool.bork.aliases]
-# Runs *only* pylint. (Not the actual tests.)
-lint = "pytest -k 'pylint' --pylint --verbose"
-# Runs tests and pylint.
-test = "pytest --pylint --verbose"
-test-only = "pytest --verbose"
-docs = "env PYTHONPATH=./ pdoc3 --html --output-dir ./html --force skysniff"
