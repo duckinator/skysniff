@@ -87,6 +87,9 @@ class NWSApi:
         print(f'forecast({address}) = {url}')
         return NWSForecastBaseline(self._get_json(url))
 
+    def daily(self, address):
+        return self.forecast(address)
+
     def hourly(self, address):
         """Given an address, return a textual hourly forecast."""
         url = self.address_to_gridpoint_url(address) + '/forecast/hourly'
