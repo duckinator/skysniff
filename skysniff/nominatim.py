@@ -15,7 +15,7 @@ class Nominatim:
             endpoint = 'https://nominatim.openstreetmap.org/search.php'
         self.endpoint = endpoint
 
-    @cache()
+    @cache
     def address_to_places(self, address):
         """Given an address (string), returns a list of Places."""
         query = urlencode({
