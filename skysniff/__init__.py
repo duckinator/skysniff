@@ -1,49 +1,15 @@
 #!/usr/bin/env python3
 
-from functools import lru_cache as memoize
+from functools import cache
 from urllib.request import urlopen
-from urllib.parse import urlencode, quote_plus
 from datetime import datetime
 import json
 import sys
 
+from .nominatim import Nominatim
+
 __author__ = 'Ellen Marie Dash'
 __version__ = '0.0.1'
-
-
-class Nominatim:
-    """Client for OpenStreetMap's Nominatim API."""
-
-    # Throughout this class, a "Place" refers to
-    #    https://wiki.openstreetmap.org/wiki/Key:place
-    # Basically: a building, postcode, city, county, country, etc.
-
-    def __init__(self, endpoint=None):
-        if endpoint is None:
-            endpoint = 'https://nominatim.openstreetmap.org/search.php'
-        self.endpoint = endpoint
-
-    @memoize()
-    def address_to_places(self, address):
-        """Given an address (string), returns a list of Places."""
-        query = urlencode({
-            'q': address,
-            'format': 'json',
-        }, quote_via=quote_plus)
-        url = self.endpoint + '?' + query
-        result = urlopen(url).read().decode()
-        return json.loads(result)
-
-    @staticmethod
-    def place_to_coords(place):
-        """Given a Place, returns (latitude, longitude)."""
-        return (place['lat'], place['lon'])
-
-    def address_to_coords(self, address):
-        """Given a Place, returns a set of coordinates."""
-        # TODO: Maybe do better than just picking the first item?
-        places = self.address_to_places(address)
-        return self.place_to_coords(places[0])
 
 
 class NWSApi:
@@ -59,7 +25,7 @@ class NWSApi:
         result = urlopen(url).read().decode()
         return json.loads(result)
 
-    @memoize()
+    @cache()
     def coords_to_gridpoint_url(self, coords):
         """Given (lat, long) coordinates, returns a Gridpoint API URL."""
         latitude, longitude = coords
