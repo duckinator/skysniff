@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from enum import StrEnum, auto
 from pathlib import Path
 from typing import Annotated, Optional, Literal
+import logging
 import os
 import sys
 
@@ -42,8 +43,10 @@ def main(argv=None):
 
     args = dykes.parse_args(SkysniffCli, args=argv[1:])
     period = args.period
-    verbose = args.verbose
     ask = args.ask
+
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
 
     address = get_address(ask)
 

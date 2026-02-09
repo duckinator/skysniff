@@ -2,6 +2,8 @@ from functools import cache
 from urllib.request import urlopen
 from datetime import datetime
 import json
+import logging
+
 from .nominatim import Nominatim
 
 class NWSApi:
@@ -10,6 +12,7 @@ class NWSApi:
     def __init__(self):
         self.server = 'https://api.weather.gov'
         self.nominatim = Nominatim()
+        self.logger = logging.getLogger(__name__)
 
     @staticmethod
     def _get_json(url):
@@ -36,13 +39,13 @@ class NWSApi:
     def raw_forecast(self, address):
         """Given an address, return a raw numerical forecast."""
         url = self.address_to_gridpoint_url(address)
-        print(f'weather({address}) = {url}')
+        self.logger.debug(f'weather({address}) = {url}')
         return self._get_json(url)
 
     def forecast(self, address):
         """Given an address, return a textual forecast."""
         url = self.address_to_gridpoint_url(address) + '/forecast'
-        print(f'forecast({address}) = {url}')
+        self.logger.debug(f'forecast({address}) = {url}')
         return NWSForecastBaseline(self._get_json(url))
 
     def daily(self, address):
@@ -51,7 +54,7 @@ class NWSApi:
     def hourly(self, address):
         """Given an address, return a textual hourly forecast."""
         url = self.address_to_gridpoint_url(address) + '/forecast/hourly'
-        print(f'hourly({address}) = {url}')
+        self.logger.debug(f'hourly({address}) = {url}')
         return NWSForecastHourly(self._get_json(url))
 
 class NWSForecastDefault:
