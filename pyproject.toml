@@ -27,7 +27,7 @@ repository = "https://github.com/duckinator/skysniff"
 skysniff = "skysniff.cli:main"
 
 [tool.hatch.version]
-path = "skysniff/__init__.py"
+path = "skysniff/version.py"
 
 [tool.bork.zipapp]
 enabled = true

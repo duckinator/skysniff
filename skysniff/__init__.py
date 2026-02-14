@@ -2,7 +2,8 @@
 
 from .nws import NWSApi
 
-__version__ = '0.0.1'
+# Expose `skysniff.version.__version__` as `skysniff.__version__`.
+from .version import __version__
 
 __all__ = [
     "NWSApi",
