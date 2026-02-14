@@ -64,7 +64,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
-    needs: [ci_success, changes]
+    needs: [success, changes]
     if: ${{ github.ref == 'refs/heads/main' && needs.changes.outputs.version_changed }}
     environment: pypi
     permissions:
