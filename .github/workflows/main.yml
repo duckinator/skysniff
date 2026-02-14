@@ -56,6 +56,7 @@ jobs:
       version_changed: ${{ steps.project.VERSION_CHANGED == '1' }}
     steps:
       - uses: actions/checkout@v6
+        fetch-depth: 0
       - name: Check if version.py has changed
         id: project
         run: |
