@@ -16,9 +16,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dependencies = []
+dependencies = ["dykes"]
 
-requires-python = ">= 3.11"
+requires-python = ">= 3.12"
 
 [project.urls]
 repository = "https://github.com/duckinator/skysniff"
@@ -27,7 +27,7 @@ repository = "https://github.com/duckinator/skysniff"
 skysniff = "skysniff.cli:main"
 
 [tool.hatch.version]
-path = "skysniff/__init__.py"
+path = "skysniff/version.py"
 
 [tool.bork.zipapp]
 enabled = true

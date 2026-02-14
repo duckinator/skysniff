@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import StrEnum, auto
 from pathlib import Path
-from typing import Annotated, Optional, Literal
+from typing import Annotated
 import logging
 import os
 import sys
@@ -25,7 +25,7 @@ class SkysniffCli:
 
 
 def get_config_file():
-    xdg_config = os.environ.get("XDG_CONFIG", Path.home().joinpath('.config'))
+    xdg_config = os.environ.get("XDG_CONFIG_HOME", Path.home().joinpath('.config'))
     return Path(xdg_config).joinpath('skysniff', 'address.txt')
 
 def get_address(ask: bool) -> str:

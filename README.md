@@ -1,6 +1,10 @@
 # skysniff [![Build Status][build-status-link]][build-status-img]
 
-Weather thingy? Probably only works in the US?
+Skysniff pulls weather information from the National Weather Service, and prints it to your terminal.
+
+Basic usage: `skysniff [-a] daily` or `skysniff [-a] hourly`
+
+You can store the [a default address in a config file](#storing-your-address), or pass `-a` to have it ask for an address.
 
 [build-status-link]: https://api.cirrus-ci.com/github/duckinator/skysniff.svg
 [build-status-img]: https://cirrus-ci.com/github/duckinator/skysniff
@@ -8,16 +12,35 @@ Weather thingy? Probably only works in the US?
 ## Installation
 
 ```
-$ pip3 install skysniff
+$ pipx install skysniff
 ```
-
-Or find the [latest release](https://github.com/duckinator/skysniff/releases)
-and grab the `skysniff-<version>.pyz` file. This should work as a
-standalone executable. If it doesn't, try `python3 skysniff-<version>.pyz`.
 
 ## Usage
 
-TODO
+```console
+$ cat ~/.config/skysniff/address.txt
+Montello & Centre St, 02302
+$ skysniff hourly
+12AM 21°F, Mostly Cloudy, winds 5 mph
+[...]
+11AM 33°F, Mostly Sunny, winds 8 mph
+
+$ skysniff daily -a
+Address: Penn Ave & Negley Ave, Pittsburgh, PA
+Overnight
+---------
+Mostly cloudy. Low around 26, with temperatures rising to around 32 overnight. Southwest wind around 6 mph.
+
+[...]
+```
+
+### Storing your address
+
+By default, skysniff will try to read your address from the address configuration file.
+
+If the environment variable `$XDG_CONFIG_HOME` is defined, skysniff uses `$XDG_CONFIG_HOME/skysniff/address.txt`. Otherwise, it uses `~/.config/skysniff/address.txt`.
+
+(Usually these are equivalent.)
 
 ## Contributing
 
