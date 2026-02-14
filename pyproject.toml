@@ -29,6 +29,11 @@ skysniff = "skysniff.cli:main"
 [tool.hatch.version]
 path = "skysniff/version.py"
 
+[tool.bork.release]
+pypi = true
+github = true
+github_repository = "duckinator/bork"
+
 [tool.bork.zipapp]
 enabled = true
 main = "skysniff.cli:main"
