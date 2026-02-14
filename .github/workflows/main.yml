@@ -67,7 +67,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     needs: [success, changes]
-    if: ${{ github.ref == 'refs/heads/main' && needs.changes.outputs.version_changed }}
+    if: ${{ github.ref == 'refs/heads/main' && needs.changes.outputs.version_changed == 'true' }}
     environment: pypi
     permissions:
       contents: write # Required for GitHub Releases
