@@ -62,8 +62,7 @@ jobs:
         id: project
         run: |
           git log --name-only --pretty="" HEAD^..HEAD | grep -q skysniff/version.py && : "${VERSION_CHANGED:=1}" || : "${VERSION_CHANGED:=0}"
-          echo "VERSION_CHANGED='${VERSION_CHANGED}'"
-          echo "VERSION_CHANGED=${VERSION_CHANGED}" >> "$GITHUB_OUTPUT"
+          echo "VERSION_CHANGED=${VERSION_CHANGED}" | tee -a "$GITHUB_OUTPUT"
 
   release:
     runs-on: ubuntu-latest
