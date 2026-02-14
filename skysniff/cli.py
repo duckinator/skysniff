@@ -25,7 +25,7 @@ class SkysniffCli:
 
 
 def get_config_file():
-    xdg_config = os.environ.get("XDG_CONFIG", Path.home().joinpath('.config'))
+    xdg_config = os.environ.get("XDG_CONFIG_HOME", Path.home().joinpath('.config'))
     return Path(xdg_config).joinpath('skysniff', 'address.txt')
 
 def get_address(ask: bool) -> str:
