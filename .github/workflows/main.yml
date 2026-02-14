@@ -35,9 +35,9 @@ jobs:
       - run: pip install . bork
       - run: bork build
       - run: |
-          python3 -m skysniff daily 'Centre St & Montello St, Brockton, MA 02302'
+          echo 'Centre St & Montello St, Brockton, MA 02302' | python3 -m skysniff daily -a
       - run: |
-          python3 -m skysniff hourly 'Centre St & Montello St, Brockton, MA 02302'
+          echo 'Centre St & Montello St, Brockton, MA 02302' | python3 -m skysniff hourly -a
 
   success:
     name: "CI Success"
