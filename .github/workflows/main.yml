@@ -53,7 +53,7 @@ jobs:
     permissions:
       contents: read
     outputs:
-      version_changed: ${{ steps.project.VERSION_CHANGED == '1' }}
+      version_changed: ${{ steps.project.outputs.VERSION_CHANGED == '1' }}
     steps:
       - uses: actions/checkout@v6
         with:
