@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v5
         with:
-          python-version: '> 3.10'
+          python-version: '>= 3.12'
       - run: pip install ruff
       - run: ruff --version
       - run: ruff check
@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ["3.11", "3.12", "3.13", "3.14"]
+        python-version: ["3.12", "3.13", "3.14"]
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -76,7 +76,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v5
         with:
-          python-version: '> 3.10'
+          python-version: '>= 3.12'
       - run: pip install bork
       - run: bork build
       - run: bork release
