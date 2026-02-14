@@ -1,13 +1,10 @@
-# skysniff [![Build Status][build-status-link]][build-status-img]
+# skysniff
 
 Skysniff pulls weather information from the National Weather Service, and prints it to your terminal.
 
 Basic usage: `skysniff [-a] daily` or `skysniff [-a] hourly`
 
 You can store the [a default address in a config file](#storing-your-address), or pass `-a` to have it ask for an address.
-
-[build-status-link]: https://api.cirrus-ci.com/github/duckinator/skysniff.svg
-[build-status-img]: https://cirrus-ci.com/github/duckinator/skysniff
 
 ## Installation
 
