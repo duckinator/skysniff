@@ -1,7 +1,8 @@
 from functools import cache
 from urllib.parse import urlencode, quote_plus
-from urllib.request import urlopen
 import json
+
+from . import http
 
 class Nominatim:
     """Client for OpenStreetMap's Nominatim API."""
@@ -12,7 +13,7 @@ class Nominatim:
 
     def __init__(self, endpoint=None):
         if endpoint is None:
-            endpoint = 'https://nominatim.openstreetmap.org/search.php'
+            endpoint = 'https://nominatim.openstreetmap.org/search'
         self.endpoint = endpoint
 
     @cache
@@ -23,7 +24,7 @@ class Nominatim:
             'format': 'json',
         }, quote_via=quote_plus)
         url = self.endpoint + '?' + query
-        result = urlopen(url).read().decode()
+        result = http.get(url)
         return json.loads(result)
 
     @staticmethod

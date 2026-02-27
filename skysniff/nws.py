@@ -4,6 +4,7 @@ from datetime import datetime
 import json
 import logging
 
+from . import http
 from .nominatim import Nominatim
 
 class NWSApi:
@@ -17,7 +18,7 @@ class NWSApi:
     @staticmethod
     def _get_json(url):
         """Given a URL, fetches it and attempts to parse it as JSON."""
-        result = urlopen(url).read().decode()
+        result = http.get(url)
         return json.loads(result)
 
     @cache
