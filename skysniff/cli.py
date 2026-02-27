@@ -18,6 +18,10 @@ class ForecastPeriod(StrEnum):
 class SkysniffCli:
     """
     Fetch and display an hourly or daily forecast for a given address.
+
+    Skysniff uses the following data sources:
+    - Nominatim API <https://nominatim.org>
+    - National Weather Service (NWS) API <https://api.weather.gov>
     """
     period: Annotated[ForecastPeriod, ', '.join([e.value for e in ForecastPeriod])]
     ask: Annotated[dykes.StoreTrue, "ask for address"]
