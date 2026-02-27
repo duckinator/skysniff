@@ -1,4 +1,4 @@
-import logging
+import json
 import urllib.request
 
 from . import version
