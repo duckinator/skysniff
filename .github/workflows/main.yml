@@ -69,7 +69,6 @@ jobs:
     environment: pypi
     permissions:
       contents: write # Required for GitHub Releases
-      workflows: write # Apparently required for making GitHub Releases via REST API?
       id-token: write # Required for PyPi Trusted Publishing
     env:
       BORK_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
